@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flexbox Lab</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 1rem;
+            }
+            .box {
+                background-color: #b45f36;
+                  color: #fffaf3;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-align: center;
+}
+.row {
+  display: flex;
+  border: 2px dashed #dcc9b7;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+.tall {
+    min-height: 160px;
+}
+.align-demo {
+    justify-content: space-between;
+    align-items: center;
+}
+.big {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+.wrap-demo {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.grow-demo .box {
+    flex-basis:120px;
+}
+.grow {
+    flex-grow: 1;
+}
+.nav-demo {
+  justify-content: space-between;
+  align-items: center;
+}
+.cards-demo {
+  gap: 1rem;
+}
+.cards-demo .box {
+  flex: 1;
+}
+            </style>
+    </head>
+    <body>
+        <h1>Flexbox Lab</h1>
+
+        <h2>1. The container</h2>
+        <div class="row">
+        <div class="box">A</div>
+        <div class="box">B</div>
+        <div class="box">C</div>
+        </div>
+
+        <h2>2. Alignment</h2>
+        <div class="row tall align-demo">
+        <div class="box">A</div>
+        <div class="box big">B</div>
+        <div class="box">C</div>
+        </div>
+
+          <h2>3. Wrapping and gaps</h2>
+  <div class="row wrap-demo">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <div class="box">7</div>
+    <div class="box">8</div>
+  </div>
+
+    <h2>4. Flexible sizing</h2>
+  <div class="row grow-demo">
+    <div class="box">A</div>
+    <div class="box grow">B grows</div>
+    <div class="box">C</div>
+  </div>
+  <h2>5. Nav row pattern</h2>
+<div class="row nav-demo">
+  <div class="box">Logo</div>
+  <div class="box">Links</div>
+</div>
+
+<h2>6. Card row pattern</h2>
+<div class="row cards-demo">
+  <div class="box">Card 1</div>
+  <div class="box">Card 2</div>
+  <div class="box">Card 3</div>
+</div>
+    </body>
+</html>
