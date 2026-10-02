@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Juniper & Grain Bakery</title>
+        <style>
+          *, *::before, *::after {
+            box-sizing: border-box;
+          }
+ :root {
+--cream: #f7f1e8;
+--paper: #fffaf3;
+--ink: #2f251f;
+--cocoa: #5c2f1f;
+--rust: #b45f36;
+--gold: #d79a58;
+--line: #dcc9b7;
+}
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background-color: var(--cream);
+  }
+ h1, h2 {
+  font-family: Georgia, serif;
+  color: var(--cocoa);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.75rem;
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+.tagline {
+  font-size: 1.2rem;
+  color: var(--rust);
+  margin: 0
+}
+p, li {
+  line-height: 1.6;
+}
+
+header, main, footer {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+} 
+header {
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--rust);
+}
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--cocoa);
+  margin: 0;
+}
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.nav-links a {
+  color: var(--cocoa);
+  text-decoration: none;
+  font-weight: 700;
+}
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--rust);
+  text-decoration: underline;
+}
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+.card {
+  flex: 1 1 200px;
+  background-color: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+.card h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+.card p {
+  margin-bottom: 0;
+}
+footer {
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size:0.9rem;
+  color: var(--cocoa);
+  text-align:center;
+}
+main {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+section {
+  background-color: var(--paper);
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  margin: 2rem 0;
+  border-radius: 10px;
+}
+.featured {
+  border-left: 6px solid var(--rust);
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+ul {
+  padding-left: 1.25rem;
+}
+</style>
+    </head>
+    <body>
+        <header>
+          <div class="nav-bar">
+            <p class="brand">Juniper &amp; Grain</p>
+            <nav aria-label="Main">
+              <ul class="nav-links">
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#visit">Visit</a></li>
+              </ul>
+            </nav>
+          </div>
+            <h1>Juniper & Grain Bakery</h1>
+            <p class="tagline">Small-batch bread and pastries, baked fresh every morning in the heart of the neighborhood.</p>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>About us</h2>
+                <p>Juniper &amp; Grain is a neighborhood bakery built around simple ingredients and slow mornings. Every loaf starts the night before, when the starter gets fed and the dough gets its first long rest.</p>
+                <p>We bake in small batches, so when the day's bread is gone, it's gone. Come early, or call ahead and we'll set a loaf aside with your name on it.</p>
+            </section>
+
+            <section id="menu" class="featured">
+                <h2>Featured bakes</h2>
+                <p>Fresh from the oven each morning. When it's gone, it's gone.</p>
+                <ul>
+                    <li>Country sourdough - $8</li>
+                    <li>Butter croissant - $4</li>
+                    <li>Cinnamon morning bun - $5</li>
+                    <li>Seeded rye loaf - $9</li>
+                </ul>
+            </section>
+
+            <section id="story">
+                <h2>Our story</h2>
+                <p>We started with one oven and a love of good bread</p>
+                <img src="https://picsum.photos/600/400" alt="Golden loaves of sourdough cooling on a wooden rack at Juniper and Grain Bakery">
+            </section>
+
+            <section id="visit">
+                <h2>Visit the bakery</h2>
+                <p>Find us at 214 Alder Street. We're open:</p>
+                <ul>
+                    <li>Tuesday-Friday: 7:00 a.m.-2:00 p.m.</li>
+                    <li>Saturday-Sunday: 8:00 am-1:00 p.m.</li>
+                    <li>Monday: closed. the oven rests</li>
+                </ul>
+                <p>
+                    Call <a href="tel:+15550148237">(555) 014-8237</a>
+                    to reserve a loaf, or write to
+                    <a href="mailto:hello@juniperandgrain.example">hello@juniperandgrain.example</a>
+                </p>
+            </section>
+            <section id="services" aria-labelledby="services-heading">
+                <h2 id="services-heading">Our services</h2>
+                <div class="card-row">
+                  <article class="card">
+                    <h3>Custom Cakes</h3>
+                    <p>Celebration cakes built to order - tell us the occasion, we handle the rest.</p>
+                  </article>
+                  <article class="card">
+                    <h3>Wholesale Loaves</h3>
+                    <p>Daily sourdough for cafes and grocers, delivered before your doors open.</p>
+                  </article>
+                  <article class="card">
+                    <h3>Baking Classes</h3>
+                    <p>Small Saturday workshops: shape, score, and bake your own loaf to take home.</p>
+                  </article>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Juniper & Grain Bakery. Practice page only</p>
+        </footer>
+    </body>
+</html>
