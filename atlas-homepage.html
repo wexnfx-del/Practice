@@ -5,6 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atlas Plumbing | Citrus Heights Plumber Since 2005</title>
   <meta name="description" content="Atlas Plumbing — Citrus Heights plumber for 20 years. Leak repair, drains, fixture installs, water heaters. Call (916) 723-1988.">
+  <style>
+    :root {
+      --bg: #f4f6f5;
+      --ink: #14262f;
+      --mute: #4d6068;
+      --panel: #e6ebea;
+      --brand: #1f4252;
+      --brass: #b07d2e;
+      --onbrand: #f4f6f5;
+      --line: #c9d2d0;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    header {
+      background-color: var(--brand);
+      color: var(--onbrand);
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    header p {
+      margin: 0;
+    }
+    header a {
+      color: var(--onbrand);
+    }
+    .hero {
+      padding: clamp(2.5rem, 8vw, 5rem);
+      background-color: var(--brand);
+      color: var(--onbrand);
+      border-top: 3px solid var(--brass);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw + 1rem, 3.25rem);
+      line-height: 1.15;
+      margin: 0 0 1rem;
+      max-width: 20ch;
+    }
+    .hero p {
+      max-width: 55ch;
+      color: var(--onbrand);
+      opacity: 0.9;
+    }
+    .hero .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5 rem;
+    }
+    .btn-call {
+      background-color: var(--brass);
+      color:#14262f;
+      font-weight: 700;
+      padding: 0.9rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .btn-ghost {
+      color: var(--onbrand);
+      font-weight: 700;
+      padding: 0.9rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 2px solid var{var(--brass)}
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    @media (min-width: 700px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+
+      }
+      nav {
+        margin-left: auto;
+      }
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -23,12 +122,12 @@
 
   <main>
 
-    <section aria-labelledby="hero-heading">
+    <section class="hero" aria-labelledby="hero-heading">
       <h1 id="hero-heading">The plumber for the jobs others won&rsquo;t touch.</h1>
       <p>Twenty years in Citrus Heights, taking on the difficult work — ceramic valves, antique brass fittings, the fixtures nobody else wants to deal with. Done right, at a fair price.</p>
-      <p>
-        <a href="tel:+19167231988">Call (916) 723-1988</a>
-        <a href="#services">See services</a>
+      <p class="cta-row">
+        <a class="btn-call" href="tel:+19167231988">Call (916) 723-1988</a>
+        <a class="btn-ghost" href="#services" >See services</a>
       </p>
     </section>
 
