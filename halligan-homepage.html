@@ -159,6 +159,39 @@ img {
   color: var(--mute);
   font-size: 0.95rem;
 }
+.contact {
+  padding: clamp(3rem, 8vw, 5rem) 1.25rem;
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid var(--line);
+}
+.contact h2 {
+  font-size: clamp(1.6rem, 4vw + 1rem, 2.25rem);
+  margin: 0 0 0.75rem;
+  color: var(--brand);
+}
+.contact address {
+  font-style: normal;
+  color: var(--mute);
+  margin: 1.5rem 0 0;
+  line-height: 1.8;
+}
+.contact address a {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 700;
+}
+.btn-call-big {
+  background-color: var(--amber);
+  color: #14171c;
+  font-weight: 700;
+  padding: 1.1rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  min-height: 44px;
+}
 .trust {
   background-color: var(--brand);
   color: var(--onbrand);
@@ -175,6 +208,14 @@ img {
 }
 .trust strong {
   color: var(--amber);
+}
+footer {
+  background-color: var(--brand);
+  color: var(--onbrand);
+  padding: 2rem, 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.95;
 }
   </style>
 </head>
@@ -251,12 +292,12 @@ img {
       </figure>
     </section>
 
-    <section id="contact" aria-labelledby="contact-heading">
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Get a free estimate</h2>
       <p>Call any time — emergencies don't keep office hours.</p>
       <address>
         Rocklin, CA 95677<br>
-        <a href="tel:+19165805112">(916) 580-5112</a>
+        <a class="btn-call-big" href="tel:+19165805112">(916) 580-5112</a>
       </address>
     </section>
 
