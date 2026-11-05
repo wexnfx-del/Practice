@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Lab | Menu + FAQ</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #14171c;
+            background-color: #f7f5ef;
+        }
+        header {
+            background-color: #1e2a3a;
+            color: #f7f5ef;
+            padding: 1rem 1.25rem;
+        }
+        .menu-btn {
+            background-color: #f5a301;
+            color: #14171c;
+            border: none;
+            font-weight:700;
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            min-height: 44px;
+        }
+        .nav-list {
+            list-style: none;
+            margin: 1rem 0 0;
+            padding: 0;
+            display: none;
+        }
+        .nav-list.open {
+            display: block;
+        }
+        .nav-list a {
+            color: #f7f5ef;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            min-height: 44px;
+        }
+        main {
+            padding: 1.5rem 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .faq-q {
+            width: 100%;
+            text-align: left;
+            background-color: #ffffff;
+            border: 1px solid #d9d4c7;
+            border-radius: 6px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 44px;
+            margin-top: 0.75rem;
+        }
+        .faq-a {
+            display: none;
+            padding: 0.75rem 0.25rem 0.25rem;
+        }
+        .faq-a.open {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="menu-btn" id="menuBtn" type="button">Menu</button>
+        <nav aira-label="Main">
+            <ul class="nav-list" id="navList">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Javascript Lab</h1>
+        <p>HTML is the bones. CSS is the clothes. Javascript is the muscles - it makes the page move</p>
+
+        <button class="faq-q" type="button">What does JavaScript do?</button>
+        <div class="faq-a">
+            <p>It changes the page after it loads - showing, hiding, and reacting when someone clicks.</p>
+        </div>
+
+        <button class="faq-q" type="button">Why does thescript go at the end?</button>
+        <div class="faq-a">
+            <p>Because JavaScript looks for elements. It it runs before they exist, it finds nothing to grab</p>
+        </div>
+
+        <button class="faq-q" type="button">Is this how mobile menus work?</button>
+        <div class="faq-a">
+            <p>Exactly this: a button, a click, and a class flipped on and off</p>
+        </div>
+<script>
+    const menuBtn = document.querySelector('#menuBtn');
+    const navList = document.querySelector('#navList');
+
+    menuBtn.addEventListener("click", function () {
+        navList.classList.toggle("open");
+    });
+
+    const faqButtons = document.querySelectorAll('.faq-q');
+    faqButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            btn.nextElementSibling.classList.toggle("open");
+        });
+    });
+
+</script>
+</body>
+</html>
