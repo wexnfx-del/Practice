@@ -159,6 +159,36 @@ img {
   color: var(--mute);
   font-size: 0.95rem;
 }
+#faq {
+  padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand);
+  cursor: pointer;
+  min-height: 44px;
+  margin-top: 0.75rem;
+}
+.faq-a {
+  display: none;
+  padding: 0.75rem 0.25rem 0.25rem;
+}
+.faq-a.open {
+  display: block;
+}
+.faq-a p {
+  margin: 0 0 0.5rem;
+  color: var(--mute);
+}
 .contact {
   padding: clamp(3rem, 8vw, 5rem) 1.25rem;
   text-align: center;
@@ -212,10 +242,42 @@ img {
 footer {
   background-color: var(--brand);
   color: var(--onbrand);
-  padding: 2rem, 1.25rem;
+  padding: 2rem 1.25rem;
   text-align: center;
   font-size: 0.9rem;
   opacity: 0.95;
+}
+.menu-btn {
+  background-color: var(--amber);
+  color: #14171c;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.nav-list {
+  display: none;
+}
+.nav-list.open {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+@media (min-width: 700px) {
+  .menu-btn {
+    display: none;
+  }
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 }
   </style>
 </head>
@@ -223,8 +285,9 @@ footer {
 
   <header>
     <p>Halligan Electric</p>
+    <button class="menu-btn" id="menuBtn" type="button">Menu</button>
     <nav aria-label="Main">
-      <ul>
+      <ul class="nav-list" id="navList">
         <li><a href="#services">Services</a></li>
         <li><a href="#why">Why Halligan</a></li>
         <li><a href="#reviews">Reviews</a></li>
@@ -292,6 +355,30 @@ footer {
       </figure>
     </section>
 
+    <section id="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Common questions</h2>
+
+      <button class="faq-q" type="button">Are you a licensed electrician?</button>
+      <div class="faq-a">
+        <p>Yes. California CSLB #1136619. A license number you can look up is the difference betwen a contractor and a stanger with a toolbox.</p>
+      </div>
+
+      <button class="faq-q" type="button">Do you really answer 24/7?</button>
+      <div class="faq-a">
+        <p>Emergency calls get answered around the clock - nights, weekends, holidays. If the power's out at 2am call (916) 580-5112. and a licensed electrician picks up.</p>
+      </div>
+
+      <button class="faq-q" type="button">Are estimates really free?</button>
+      <div class="faq-a">
+        <p>Free estimates with up-front pricing before any work starts 0 you know the number before anyone touches a wire.</p>
+      </div>
+
+      <button class="faq-q" type="button">Can you install my EV charger?</button>
+      <div class="faq-a">
+        <p>Yes - Home EV charger installs, including Tesla, sized to your panel and your car. It's one the he shop's core services, not an afterthought.</p>
+      </div>
+    </section>
+
     <section class="contact" id="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Get a free estimate</h2>
       <p>Call any time — emergencies don't keep office hours.</p>
@@ -306,6 +393,23 @@ footer {
   <footer>
     <p>&copy; 2026 Halligan Electric LLC. <strong>CSLB #1136619.</strong> Practice mockup only &mdash; not affiliated with the business.</p>
   </footer>
+
+  <script>
+    const menuBtn = document.querySelector("#menuBtn");
+    const navList = document.querySelector("#navList");
+
+    menuBtn.addEventListener("click", function () {
+      navList.classList.toggle("open");
+    });
+
+    const faqButtons = document.querySelectorAll(".faq-q");
+
+    faqButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        btn.nextElementSibling.classList.toggle("open");
+    });
+  });
+  </script>
 
 </body>
 </html>
