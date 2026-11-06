@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Lab | Forms</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #14171c;
+            background-color: #f7f5ef;
+        }
+        main {
+            padding: 1.5rem 1.25rem;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        h1 { color: #1e2a3a; }
+        .field { margin-top: 1rem; }
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid #d9d4c7;
+            border-radius: 6px;
+            background-color: #ffffff;
+        }
+        input:focus, textarea:focus {
+            outline: 3px solid #f5a301;
+            outline-offset: 2px;
+        }
+        .field.error input, .field.error textarea {
+            border-color: #c0392b;
+        }
+        .field .hint {
+            font-size: 0.85rem;
+            color: #5b5f6b;
+            margin-top: 0.25rem;
+        }
+        button {
+            background-color: #f5a301;
+            color: #14171c;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            min-height: 44px;
+            margin-top: 1.25rem;
+        }
+        .form-status {
+            margin-top: 1rem;
+            font-weight: 700;
+        }
+        .form-status.bad { color: #c0392b; }
+        .success {
+            display: none;
+            background-color: #ffffff;
+            border: 2px solid #1e2a3a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .success.open { display: block; }
+        details {
+            background-color: #ffffff;
+            border: 1px solid #d9d4c7;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 0.75rem;
+        }
+        summary {
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 44px;
+        }
+        </style>
+        </head>
+        <body>
+            <main>
+                <h1>Contact Lab</h1>
+                <p>The money moment: a stranger reaches the business. Three jobs - collect, check, respond </p>
+
+                <form id="contactForm">
+                    <div class="field">
+                        <label for="name">Your name</label>
+                        <input type="text" id="name" name="name" autocomplete="email" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
+                            <p class="hint">We'll only use this to reply.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Phone (optional)</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel">
+                    </div>
+
+                    <div class="field">
+                        <label for="message">What do you need?</label>
+                        <textarea id="message" name="message" rows="4" minlength="10" required>
+                        </textarea>
+                        <p class="hint">Ten characters minimum - "help" doesn't tell us much.</p>
+                    </div>
+
+                    <p class="form-status" id="formStatus" aria-live="polite"></p>
+
+                    <button type="submit">Submit</button>
+                </form>
+
+                <div class="success" id="successCard">
+                    <h2>Message received!</h2>
+                    <p>Thank you for your message. We'll get back to you soon.</p>
+                </div>
+
+                <h2 style="margin-top: 2rem;">Quick questions</h2>
+                <details>
+                    <summary>Do you service my area?</summary>
+                    <p>If you're withing 30 miles of Citrus Heights, yes - and we'll tell you straight if you're not.</p>
+                </details>
+                <details>
+                    <summary>How quickly do you respond?</summary>
+                    <p>We aim to respond within 24 hours during business days.</p>
+                </details>
+            </main>
+
+<script>
+    const form = document.querySelector('#contactForm');
+    const status = document.querySelector('#formStatus');
+    const success = document.querySelector('#successCard');
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const problems = [];
+        const fields = form.querySelectorAll(".field");
+
+        fields.forEach(funtion (wrap) {
+            wrap.classList.remove("error");
+        });
+
+        form.querySelectorALL("input, textarea").forEach(function (el) {
+            if (!el.checkValidity()) {
+                el.closest(".field").classList.add("error");
+                const label = form.querySelector("label[for='" + el.id + "']").textContent;
+                problems.push(label);
+            }
+        });
+        
+        if (problems.length > 0) {
+            status.textContent = "almost - " +problems.length +
+            " thing(s) need fixing: " + problems.join(", ") + ".";
+            status.classList.add("bad");
+            form.querySelector(".field.error input, .field.error textarea").focus();
+            return;
+        }
+
+        status.textContent = "";
+        status.classList.remove("bad");
+        form.style.display = "none";
+        success.classList.add("open");
+    });
+
+</script>
+
+</body>
+</html>
