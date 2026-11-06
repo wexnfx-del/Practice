@@ -94,7 +94,7 @@
                 <form id="contactForm">
                     <div class="field">
                         <label for="name">Your name</label>
-                        <input type="text" id="name" name="name" autocomplete="email" required>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
                         </div>
 
                         <div class="field">
@@ -147,11 +147,11 @@
         const problems = [];
         const fields = form.querySelectorAll(".field");
 
-        fields.forEach(funtion (wrap) {
+        fields.forEach(function (wrap) {
             wrap.classList.remove("error");
         });
 
-        form.querySelectorALL("input, textarea").forEach(function (el) {
+        form.querySelectorAll("input, textarea").forEach(function (el) {
             if (!el.checkValidity()) {
                 el.closest(".field").classList.add("error");
                 const label = form.querySelector("label[for='" + el.id + "']").textContent;
