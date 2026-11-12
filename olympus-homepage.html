@@ -133,14 +133,6 @@
             .contact h2 { font-size: clamp(1.6rem, 4vw + 1rem, 2.25rem); margin-bottom:
             0.75rem; }
         .contact p { color: var(--mute); }
-        .form-seat {
-            max-width: 640px;
-            margin: 1.5rem auto 0;
-            border: 2px dashed var(--line);
-            border-radius: 8px;
-            padding: 1.5rem;
-            color: var(--mute);
-        }
         footer {
             background-color: var(--brand);
             color: var(--onbrand);
@@ -150,6 +142,67 @@
             opacity: 0.95;
         }
         footer p { margin: 0.25rem 0;}
+        .contact form {
+               max-width: 640px;
+            margin: 1.5rem auto 0;
+            text-align: left;
+        }
+        .field { margin-top: 1rem; }
+        .field label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--brand);
+        }
+        .field input, .field textarea {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--line);
+            border-radius: 6px;
+            background-color: #ffffff;
+        }
+        .field input:focus, .field textarea:focus {
+            outline: 3px solid var(--amber);
+            outline-offset: 2px;
+        }
+        .field.error input, .field.error textarea {
+            border-color: #c0392b;
+        }
+        .field .hint {
+            font-size: 0.85rem;
+            color: var(--mute);
+            margin-top: 0.25rem;
+        }
+        .btn-submit {
+            background-color: var(--amber);
+            color: #14171c;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.9rem 1.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            min-height: 44px;
+            margin-top: 1.25rem;
+        }
+        .form-status {
+            margin-top: 1rem;
+            font-weight: 700;
+        }
+        .form-status.bad { color: #c0392b; }
+        .success {
+            display: none;
+            background-color: #ffffff;
+            border: 2px solid var(--brand);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem auto 0;
+            max-width: 640px;
+            text-align: left;
+        }
+        .success.open { display: block; }
         </style>
     </head>
     <body>
@@ -186,7 +239,7 @@
                 </article>
                 <article class="card">
                     <h3>Roof Replacement</h3>
-                    <p>Complete replacement with permitted, inspectable work - typical permitted jobs run around $22.750.</p>
+                    <p>Complete replacement with permitted, inspectable work - typical permitted jobs run around $22,750.</p>
                 </article>
                 <article class="card">
                     <h3>Roofing Repairs</h3>
@@ -237,9 +290,34 @@
                     <p>
                         <a class="btn-call" href="tel:+19163057422">Call (916) 305-7422</a>
                     </p>
-                    <div class="form-seat">
-                        <p><strong>Quote form - coming in the next build session.</strong>
-                        The validated form from Week 10 (collect, check, respond, delivered by Netlify Forms) drops in here, with fields shaped for a roof: name, phone, and what's going on up there.</p>
+                    <form id="quoteForm" name="olympus-quote" method="post" data-netlify="true">
+                        <input type="hidden" name="form-name" value="olympus-quote">
+
+                        <div class="field">
+                            <label for="q-name">Your name</label>
+                            <input type="text" id="q-name" name="name" autocomplete="name" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="q-phone">Phone</label>
+                            <input type="tel" id="q-phone" name="phone" autocomplete="tel" inputmode="tel" required>
+                            <p class="hint">Olympus replies by phone - that's how estimates get booked</p>
+                        </div>
+
+                        <div class="field">
+                            <label for="q-message">What's going on up there?</label>
+                            <textarea id="q-message" name="message" rows="4" minlength="10" required></textarea>
+                            <p class="hint">A short sentence is plenty - what you see, where it is, how long it's been going on. Ten characters minimum</p>
+                        </div>
+
+                        <p class="form-status" id="formStatus" aria-live="polite"></p>
+
+                        <button type="submit" class="btn-submit">Request my quote</button>
+                    </form>
+
+                    <div class="success" id="successCard">
+                        <h3>Request recieved.</h3>
+                        <p>Thanks - Olympus Roofing will call you back. If water is coming in right now, don't wait on a form: call (916) 305-7422</p>
                     </div>
                 </div>
             </section>
@@ -249,5 +327,54 @@
             <p>&copy; 2026 Olympus Roofing. CA Lic #1053501. Citrus Heights, CA</p>
             <p>Site concept - practice build, not affiliated with the business.</p>
         </footer>
+           <script>
+        const quoteForm = document.querySelector("#quoteForm");
+        const qStatus = document.querySelector("#formStatus");
+        const qSuccess = document.querySelector("#successCard");
+
+        quoteForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const problems = [];
+            const fields = quoteForm.querySelectorAll(".field");
+
+            fields.forEach(function (wrap) {
+                wrap.classList.remove("error");
+            });
+
+            quoteForm.querySelectorAll("input, textarea").forEach(function (el) {
+                if (el.type === "hidden") return;
+                if (!el.checkValidity()) {
+                    el.closest(".field").classList.add("error");
+                    const label = quoteForm.querySelector("label[for='" + el.id + "']").textContent;
+                    problems.push(label);
+                }
+            });
+
+            if (problems.length > 0) {
+                qStatus.textContent = "Almost — " + problems.length +
+                    " thing(s) need fixing: " + problems.join(", ") + ".";
+                qStatus.classList.add("bad");
+                quoteForm.querySelector(".field.error input, .field.error textarea").focus();
+                return;
+            }
+
+            qStatus.textContent = "Sending…";
+            qStatus.classList.remove("bad");
+
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(new FormData(quoteForm)).toString()
+            }).then(function () {
+                qStatus.textContent = "";
+                quoteForm.style.display = "none";
+                qSuccess.classList.add("open");
+            }).catch(function () {
+                qStatus.textContent = "The form couldn't send just now — please call (916) 305-7422 and we'll take it from there.";
+                qStatus.classList.add("bad");
+            });
+        });
+    </script>
     </body>
     </html>
