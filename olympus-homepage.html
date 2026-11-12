@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Olympus Roofing | Citrus Heights Roofer - Reroofs & Roof Replacement</title>
-        <meta name="description" content="Olympus Roofing  - licenced Citrus Heights roofer (CA Lic #1053501). 97 permitted projects. Residential reroofs and roof replacement. Call (916) 305-7422.">
+        <meta name="description" content="Olympus Roofing  - licensed Citrus Heights roofer (CA Lic #1053501). 97 permitted projects. Residential reroofs and roof replacement. Call (916) 305-7422.">
         <style>
             :root {
                 --bg: #f7f5ef;
@@ -27,7 +27,7 @@
                 background-color: var(--brand);
                 color: var(--onbrand);
                 padding: 1rem 1.25rem;
-                dislpay: flex;
+                display: flex;
                 flex-wrap: wrap;
                 align-items: center;
                 gap: 0.75rem 1.25rem;
@@ -35,7 +35,7 @@
             }
             header p { margin: 0; font-weight:700; letter-spacing: 0.02em; }
             header a { color: var(--onbrand); text-decoration: none; font-weight: 700; }
-            .btn call {
+            .btn-call {
                 background-color: var(--amber);
                 color: #14171c;;
                 padding: 0.9rem 1.75rem;
@@ -45,9 +45,9 @@
                 display: inline-block;
                 min-height: 44px;
             }
-            header .btn call { margin-left: auto; padding: 0.75rem 1.5rem; }
+            header .btn-call { margin-left: auto; padding: 0.75rem 1.5rem; }
             .hero {
-                padding: clamp(2.5rem, 8vw, 5rem); 1.25rem;
+                padding: clamp(2.5rem, 8vw, 5rem) 1.25rem;
                 background-color: var(--brand);
                 color: var(--onbrand);
             }
@@ -130,7 +130,7 @@
                 border-top: 1px solid var(--line);
                 text-align: center;
             }
-            .contact h2 { font-size: clamp(1.6rem, 4vw + rem, 2.25rem); margin-bottom:
+            .contact h2 { font-size: clamp(1.6rem, 4vw + 1rem, 2.25rem); margin-bottom:
             0.75rem; }
         .contact p { color: var(--mute); }
         .form-seat {
@@ -155,14 +155,14 @@
     <body>
         <header>
             <p>Olympus Roofing</p>
-            <a href="tel:+19163057422">Call for a quote</a>
+            <a class="btn-call" href="tel:+19163057422">Call for a quote</a>
         </header>
 
         <main>
 
             <section class="hero" aria-labelledby="hero-heading">
-                <h1 id="hero-heading">The roofer behind 97 permitted gobs in your neighborhood.</h1>
-                <p>Olympus Roofing is a licensed Citrus Heights roofing contractor - CA Lic #1053501 - doing residential reroofs and roof replacement across the Sacramento area. No showroom, no sales pitch. Just permitted work, done under a licese you can look up.</p>
+                <h1 id="hero-heading">The roofer behind 97 permitted jobs in your neighborhood.</h1>
+                <p>Olympus Roofing is a licensed Citrus Heights roofing contractor - CA Lic #1053501 - doing residential reroofs and roof replacement across the Sacramento area. No showroom, no sales pitch. Just permitted work, done under a license you can look up.</p>
                 <p class="cta-row">
                     <a class="btn-call" href="tel:+19163057422">Call (916) 305-7422</a>
                 </p>
@@ -176,5 +176,46 @@
                     <li>Based in Citrus Heights</li>
                 </ul>
             </div>
+            <section aria-labelledby="services-heading">
+                <div class="wrap">
+                    <h2 id="services-heading">Services</h2>
+                </div class="services-grid">
+                <article class="card">
+                    <h3>Reroofs</h3>
+                    <p>Full tear-off and reroof for homes whols roof has reached the end of its life - the core of Olympus's permitted record.</p>
+                </article>
+                <article class="card">
+                    <h3>Roof Replacemen</h3>
+                    <p>Complete replacement with permitted, inspectable work - typical permitted jobs run aroun d$22.750.</p>
+                </article>
+                <article class="card">
+                    <h3>Roofing Repairs</h3>
+                    <p>Leaks and storm damage assessed honestly - repair when a repair is what's needed. *(Placeholder copy - confirm the real service list before this page is ever show to the business.*</p>
+                </article>
+                </div>
+            </section>
+
+            <section aria-labelledby="about-heading">
+                <div class="wrap">
+                    <h2 id="about-heading">About Olympus Roofing</h2>
+                    <p> Olympus Roofing is owned by Juan Manuel Ortega and based in Citrus Heights.
+                        The company's reputation has been built the slow way - permitted job after permitted job, 97 of them, with 58 in the last three years alone. Until now, every on of those customers found Olympus by workd of mouth. This page is the front door the work has hearned.</p>
+                </div>
+            </section>
+
+            <section class="area" aria-labelledby="area-heading">
+                <div class="wrap">
+                    <h2> id="about-heading">Services area</h2>
+                    <ul>
+                        <li>Citrus HEights</li>
+                        <li>Sacramento</li>
+                        <li>Fair Oaks</li>
+                        <li>Carmichael</li>
+                        <li>Granite Bay</li>
+                    </ul>
+                </div>
+            </section>
+
+
         </main>
     </body>
