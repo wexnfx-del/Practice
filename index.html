@@ -1,14 +1,496 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>My First Page</title>
-    </head>
-    <body>
-        <h1>Hello, this is my page. Weclome.</h1>
-        <p>I built this by typing it myself.</p>
-        <p>I'm learning how to build websites.</p>
-        <p>Thursday build: expand index.html into a fuller page - heading, two paragraphs, image, and link, all my own words</p>
-        <img src="https://placehold.co/400x200" alt="A placeholder image">
-        <a href="https://example.com">This is a link</a>
-    </body>
+<!-- STATUS (2026-11-12, Wes): EXPERIMENT ONLY. This v2 is a sandbox draft built to test
+     Claude's Packet E critique. It is NOT approved and NOT a go-live candidate as-is.
+     Standing launch gate, per Wes: before ANY version goes live, it gets (1) a fresh
+     Claude second-opinion pass and (2) a talk-through with Wes. Do not deploy. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympus Roofing | Citrus Heights Roofer - Reroofs & Roof Replacement</title>
+    <meta name="description" content="Olympus Roofing - licensed Citrus Heights roofer (CA Lic #1053501). 97 permitted projects. Residential reroofs and roof replacement. Call (916) 305-7422.">
+    <meta name="theme-color" content="#1e2a3a">
+    <meta property="og:title" content="Olympus Roofing | Citrus Heights Roofer">
+    <meta property="og:description" content="Licensed Citrus Heights roofer (CA Lic #1053501). 97 permitted projects on public record. Reroofs and roof replacement. Call (916) 305-7422.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231e2a3a'/%3E%3Cpath d='M10 38 L32 18 L54 38' stroke='%23f5a301' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18 38 V48 H46 V38' stroke='%23f5a301' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "RoofingContractor",
+        "name": "Olympus Roofing",
+        "telephone": "+1-916-305-7422",
+        "identifier": "CA Lic #1053501",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Citrus Heights",
+            "addressRegion": "CA"
+        },
+        "areaServed": ["Citrus Heights", "Sacramento", "Fair Oaks", "Carmichael", "Granite Bay"]
+    }
+    </script>
+    <style>
+        :root {
+            --bg: #f7f5ef;
+            --surface: #ffffff;
+            --ink: #14171c;
+            --mute: #5b616b;
+            --brand: #1e2a3a;
+            --amber: #f5a301;
+            --onbrand: #f7f5ef;
+            --line: #d9d4c7;
+            --field-line: #8a8f98;
+            --error: #c0392b;
+            --s1: 0.5rem;
+            --s2: 1rem;
+            --s3: 1.5rem;
+            --s4: 2.5rem;
+            --radius: 8px;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--ink);
+            line-height: 1.55;
+            padding-bottom: 5.5rem;
+        }
+        :focus-visible {
+            outline: 3px solid var(--brand);
+            outline-offset: 2px;
+        }
+        .hero :focus-visible, .work :focus-visible, .callbar :focus-visible, footer :focus-visible {
+            outline-color: var(--amber);
+        }
+        .skip {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background-color: var(--amber);
+            color: var(--ink);
+            font-weight: 700;
+            padding: var(--s1) var(--s2);
+            border-radius: 0 0 6px 0;
+            z-index: 20;
+        }
+        .skip:focus { left: 0; }
+        .wrap { max-width: 1100px; margin: 0 auto; }
+        section { padding: clamp(2.5rem, 6vw, 4rem) 1.25rem; }
+        h2 {
+            margin: 0 0 var(--s3);
+            color: var(--brand);
+            font-size: clamp(1.5rem, 4vw + 0.75rem, 2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0.9rem 1.75rem;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: filter 0.15s ease, transform 0.05s ease;
+        }
+        .btn:active { transform: translateY(1px); }
+        .btn--primary { background-color: var(--amber); color: var(--ink); }
+        .btn--primary:hover { filter: brightness(0.94); }
+        .btn--outline { background: none; border-color: var(--brand); color: var(--brand); }
+        .btn--outline:hover { background-color: var(--brand); color: var(--onbrand); }
+        .btn[disabled] { opacity: 0.65; cursor: wait; }
+
+        /* Hero (header merged in) */
+        .hero {
+            background-color: var(--brand);
+            background-image: repeating-linear-gradient(0deg, transparent 0 22px, rgba(247, 245, 239, 0.05) 22px 24px);
+            color: var(--onbrand);
+            padding: var(--s2) 1.25rem clamp(2.5rem, 8vw, 5rem);
+        }
+        .hero-top {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--s1) var(--s3);
+            padding-bottom: var(--s2);
+            border-bottom: 1px solid rgba(247, 245, 239, 0.25);
+        }
+        .brand-name { font-weight: 800; letter-spacing: 0.02em; font-size: 1.1rem; }
+        .hero-top .phone-link {
+            margin-left: auto;
+            color: var(--onbrand);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .hero-top .phone-link:hover { text-decoration: underline; }
+        .hero h1 {
+            margin: var(--s4) 0 var(--s2);
+            font-size: clamp(2rem, 6vw + 1rem, 3.25rem);
+            line-height: 1.15;
+            max-width: 22ch;
+        }
+        .hero-sub { max-width: 55ch; color: rgba(247, 245, 239, 0.92); margin: 0; }
+        .stats {
+            list-style: none;
+            margin: var(--s4) 0 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--s2);
+            max-width: 640px;
+        }
+        .stats .num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--amber);
+        }
+        .stats .cap { font-size: 0.85rem; color: rgba(247, 245, 239, 0.85); }
+        .hero .cta-row { margin-top: var(--s3); }
+
+        /* Services */
+        .services-grid {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+        .card {
+            background-color: var(--surface);
+            border: 1px solid var(--line);
+            border-top: 4px solid var(--amber);
+            border-radius: var(--radius);
+            padding: var(--s3);
+        }
+        .card h3 { margin: 0 0 var(--s1); color: var(--brand); }
+        .card p { margin: 0; color: var(--mute); }
+
+        /* Permit record */
+        .work { background-color: var(--brand); color: var(--onbrand); }
+        .work h2 { color: var(--onbrand); }
+        .work .eyebrow {
+            margin: 0 0 var(--s1);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--amber);
+        }
+        .ledger { list-style: none; margin: 0; padding: 0; max-width: 640px; }
+        .ledger li {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--s1) var(--s3);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(247, 245, 239, 0.2);
+        }
+        .ledger li:first-child { border-top: 1px solid rgba(247, 245, 239, 0.2); }
+        .ledger .l-date { font-weight: 700; min-width: 5.5rem; }
+        .ledger .l-town { font-weight: 600; }
+        .ledger .l-type { color: rgba(247, 245, 239, 0.85); }
+        .ledger .l-note { margin-left: auto; font-size: 0.85rem; color: rgba(247, 245, 239, 0.7); }
+        .work .area-line { margin: var(--s3) 0 0; color: rgba(247, 245, 239, 0.92); max-width: 60ch; }
+
+        /* About */
+        .about p { max-width: 62ch; }
+        .about a { color: var(--brand); font-weight: 600; }
+
+        /* Contact */
+        .contact { background-color: var(--surface); border-top: 1px solid var(--line); text-align: center; }
+        .contact p { color: var(--mute); }
+        .or-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--s2);
+            max-width: 640px;
+            margin: var(--s3) auto 0;
+            color: var(--mute);
+            font-size: 0.9rem;
+        }
+        .or-divider::before, .or-divider::after {
+            content: "";
+            flex: 1;
+            border-top: 1px solid var(--line);
+        }
+        .contact form { max-width: 640px; margin: var(--s2) auto 0; text-align: left; }
+        .contact .form-intro { margin-top: 0; }
+        .field { margin-top: var(--s2); }
+        .field label { display: block; font-weight: 600; margin-bottom: 0.25rem; color: var(--brand); }
+        .field .req { color: var(--error); }
+        .field input, .field textarea {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--field-line);
+            border-radius: 6px;
+            background-color: var(--surface);
+        }
+        .field input:focus, .field textarea:focus {
+            outline: 3px solid var(--brand);
+            outline-offset: 2px;
+        }
+        .field.error input, .field.error textarea { border-color: var(--error); }
+        .field .hint { font-size: 0.85rem; color: var(--mute); margin-top: 0.25rem; }
+        .field .field-error { font-size: 0.9rem; font-weight: 600; color: var(--error); margin-top: 0.25rem; }
+        .btn-submit { margin-top: 1.25rem; }
+        @media (max-width: 649px) { .btn-submit { width: 100%; } }
+        .form-status { margin-top: var(--s2); font-weight: 700; }
+        .form-status.is-error { color: var(--error); }
+        .success {
+            display: none;
+            background-color: var(--surface);
+            border: 2px solid var(--brand);
+            border-radius: var(--radius);
+            padding: var(--s3);
+            margin: var(--s3) auto 0;
+            max-width: 640px;
+            text-align: left;
+        }
+        .success.is-open { display: block; }
+        .is-hidden { display: none; }
+
+        /* Footer */
+        footer {
+            background-color: var(--brand);
+            color: var(--onbrand);
+            padding: 2rem 1.25rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        footer p { margin: 0.25rem 0; }
+
+        /* Fixed call bar (small screens) */
+        .callbar {
+            position: fixed;
+            inset: auto 0 0 0;
+            background-color: var(--brand);
+            border-top: 3px solid var(--amber);
+            padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom));
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+        .callbar .btn { width: 100%; max-width: 480px; }
+        @media (min-width: 900px) {
+            .callbar { display: none; }
+            body { padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="hero">
+        <div class="wrap">
+            <div class="hero-top">
+                <div class="brand-name">Olympus Roofing</div>
+                <a class="phone-link" href="tel:+19163057422">Call (916) 305-7422</a>
+            </div>
+            <h1>97 permitted roofing jobs on public record.</h1>
+            <p class="hero-sub">Olympus Roofing is a licensed Citrus Heights roofing contractor - CA Lic #1053501 - doing residential reroofs and roof replacement across the Sacramento area. Permitted work, done under a license you can look up.</p>
+            <ul class="stats" aria-label="Credentials">
+                <li><span class="num">97</span><span class="cap">permitted projects on record</span></li>
+                <li><span class="num">58</span><span class="cap">in the last 3 years</span></li>
+                <li><span class="num">#1053501</span><span class="cap">CA contractor license</span></li>
+            </ul>
+            <p class="cta-row">
+                <a class="btn btn--primary" href="tel:+19163057422">Call (916) 305-7422</a>
+            </p>
+        </div>
+    </header>
+
+    <main id="main">
+        <section aria-labelledby="services-heading">
+            <div class="wrap">
+                <h2 id="services-heading">Services</h2>
+                <ul class="services-grid">
+                    <li class="card">
+                        <h3>Reroofs &amp; roof replacement</h3>
+                        <p>Every job pulled under a city permit - see them on the public record below. Average permitted job value, per city filings: around $22,750.</p>
+                    </li>
+                    <!-- PRE-SHOW GATE: "repairs" is NOT confirmed on Olympus's public record.
+                         Confirm the real service list with the owner before this page is shown,
+                         or remove this card. This comment never renders. -->
+                    <li class="card">
+                        <h3>Roofing repairs</h3>
+                        <p>Leaks and storm damage - repair when a repair is what's needed.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="work" aria-labelledby="work-heading">
+            <div class="wrap">
+                <p class="eyebrow">Recent work</p>
+                <h2 id="work-heading">Permit record</h2>
+                <p>Most recent first, pulled from public permit filings:</p>
+                <ul class="ledger">
+                    <li><span class="l-date">Sep 2025</span><span class="l-town">Sacramento</span><span class="l-type">Reroof</span><span class="l-note">Permit filed</span></li>
+                    <li><span class="l-date">Sep 2025</span><span class="l-town">Fair Oaks</span><span class="l-type">Reroof</span><span class="l-note">Permit filed</span></li>
+                    <li><span class="l-date">Sep 2025</span><span class="l-town">Carmichael</span><span class="l-type">Reroof</span><span class="l-note">Permit filed</span></li>
+                    <li><span class="l-date">Sep 2025</span><span class="l-town">Granite Bay</span><span class="l-type">Reroof</span><span class="l-note">Permit filed</span></li>
+                </ul>
+                <p class="area-line">Working across Citrus Heights, Sacramento, Fair Oaks, Carmichael, and Granite Bay.</p>
+            </div>
+        </section>
+
+        <section class="about" aria-labelledby="about-heading">
+            <div class="wrap">
+                <h2 id="about-heading">About Olympus Roofing</h2>
+                <p>Olympus Roofing is owned by Juan Manuel Ortega and based in Citrus Heights. 97 permitted jobs on public record, 58 in the last three years. Don't take our word for it: <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx">look up license #1053501 on the CSLB site</a>, and the permits with the city.</p>
+            </div>
+        </section>
+
+        <section class="contact" aria-labelledby="contact-heading">
+            <div class="wrap">
+                <h2 id="contact-heading">Get a roofing quote</h2>
+                <p>The fastest way to reach Olympus is still the phone.</p>
+                <p>
+                    <a class="btn btn--outline" href="tel:+19163057422">Call (916) 305-7422</a>
+                </p>
+                <div class="or-divider" aria-hidden="true"><span>or send a message</span></div>
+                <form id="quoteForm" name="olympus-quote" method="post" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+                    <input type="hidden" name="form-name" value="olympus-quote">
+                    <p hidden>
+                        <label>Don't fill this out: <input name="bot-field"></label>
+                    </p>
+                    <p class="form-intro">Not urgent, or after hours? Leave your number and what's going on. Olympus replies by phone - that's how estimates get booked.</p>
+
+                    <div class="field">
+                        <label for="q-name">Your name <span class="req" aria-hidden="true">*</span></label>
+                        <input type="text" id="q-name" name="name" autocomplete="name" required aria-describedby="err-name">
+                        <p class="field-error" id="err-name" hidden>Please add your name.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="q-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+                        <input type="tel" id="q-phone" name="phone" autocomplete="tel" inputmode="tel" required aria-describedby="err-phone">
+                        <p class="field-error" id="err-phone" hidden>Please add a phone number with at least 10 digits.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="q-message">What's going on up there? <span class="req" aria-hidden="true">*</span></label>
+                        <textarea id="q-message" name="message" rows="4" required aria-describedby="hint-message err-message"></textarea>
+                        <p class="hint" id="hint-message">A short sentence is plenty - what you see, where it is, how long it's been going on.</p>
+                        <p class="field-error" id="err-message" hidden>Please add a short sentence (10 characters or more).</p>
+                    </div>
+
+                    <p class="form-status" id="formStatus" aria-live="polite"></p>
+
+                    <button type="submit" class="btn btn--primary btn-submit" id="submitBtn">Request my quote</button>
+                </form>
+
+                <div class="success" id="successCard" role="status" tabindex="-1">
+                    <h3>Request received.</h3>
+                    <p>Thanks - your request is in. If water is coming in right now, don't wait on a form: call (916) 305-7422.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p>Olympus Roofing. CA Lic #1053501. Citrus Heights, CA</p>
+            <p>Concept build prepared for Juan Manuel Ortega. Not live, not published.</p>
+        </div>
+    </footer>
+
+    <div class="callbar">
+        <a class="btn btn--primary" href="tel:+19163057422">Call (916) 305-7422</a>
+    </div>
+
+    <script>
+    (function () {
+        var quoteForm = document.querySelector("#quoteForm");
+        var qStatus = document.querySelector("#formStatus");
+        var qSuccess = document.querySelector("#successCard");
+        var submitBtn = document.querySelector("#submitBtn");
+
+        function setError(input, message) {
+            var wrap = input.closest(".field");
+            var err = document.querySelector("#err-" + input.id.replace("q-", ""));
+            wrap.classList.add("error");
+            input.setAttribute("aria-invalid", "true");
+            if (err) {
+                if (message) err.textContent = message;
+                err.hidden = false;
+            }
+        }
+
+        function clearError(input) {
+            var wrap = input.closest(".field");
+            var err = document.querySelector("#err-" + input.id.replace("q-", ""));
+            wrap.classList.remove("error");
+            input.removeAttribute("aria-invalid");
+            if (err) err.hidden = true;
+        }
+
+        quoteForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var name = quoteForm.querySelector("#q-name");
+            var phone = quoteForm.querySelector("#q-phone");
+            var message = quoteForm.querySelector("#q-message");
+            var firstBad = null;
+
+            [name, phone, message].forEach(clearError);
+            qStatus.textContent = "";
+            qStatus.classList.remove("is-error");
+
+            if (!name.value.trim()) {
+                setError(name);
+                firstBad = firstBad || name;
+            }
+            if (phone.value.replace(/\D/g, "").length < 10) {
+                setError(phone);
+                firstBad = firstBad || phone;
+            }
+            if (message.value.trim().length < 10) {
+                setError(message);
+                firstBad = firstBad || message;
+            }
+
+            if (firstBad) {
+                qStatus.textContent = "Almost - a couple of fields need a look. The first one is highlighted above.";
+                qStatus.classList.add("is-error");
+                firstBad.focus();
+                return;
+            }
+
+            submitBtn.disabled = true;
+            qStatus.textContent = "Sending...";
+
+            fetch(quoteForm.action || "/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(new FormData(quoteForm)).toString()
+            }).then(function (res) {
+                if (!res.ok) throw new Error("send failed: " + res.status);
+                qStatus.textContent = "";
+                quoteForm.classList.add("is-hidden");
+                qSuccess.classList.add("is-open");
+                qSuccess.focus();
+            }).catch(function () {
+                submitBtn.disabled = false;
+                qStatus.textContent = "The form couldn't send just now - please call (916) 305-7422 and we'll take it from there.";
+                qStatus.classList.add("is-error");
+            });
+        });
+    })();
+    </script>
+</body>
 </html>
